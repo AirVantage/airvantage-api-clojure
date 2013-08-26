@@ -2,20 +2,17 @@
   (:require [clj-http.client :as client])
   (:require [clojure.data.json :as json]))
 
-;;(def airvantage-url "http://na.airvantage.net/api")
-(def airvantage-url "http://murphy:8080/api")
-
 (defn get-body-json
-  [url query-params]
-  (let [response (client/get (str airvantage-url url)
+  [server url query-params]
+  (let [response (client/get (str server "/api/" url)
                              { :query-params query-params })
         body (:body response)]
-    ;; (print url response)
     (json/read-str body)))
 
 (defn get-access-token
-  [login password api-key api-secret]
-  (let [body-json (get-body-json "/oauth/token"
+  [server login password api-key api-secret]
+  (let [body-json (get-body-json server
+                                 "/oauth/token"
                                  {"grant_type" "password"
                                   "username" login
                                   "password" password
@@ -25,12 +22,13 @@
     (body-json "access_token")))
 
 (defn get-user-info
-  [access-token]
-  (get-body-json "/v1/users/current" { "access_token" access-token}))
+  [server access-token]
+  (get-body-json server "/v1/users/current" { "access_token" access-token}))
 
 (defn get-entities
-  [type access-token filters]
-  (get-body-json (str "/v1/" type)
+  [type server access-token filters]
+  (get-body-json server
+                 (str "/v1/" type)
                  (assoc filters "access_token" access-token)))
 
 ;; Etc... we could define as may functions as we want...

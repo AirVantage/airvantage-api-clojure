@@ -3,6 +3,7 @@
   (:use [seesaw.mig]))
 
 ;; Example GUI
+(def server-field (text "http://na.airvantage.net"))
 (def client-id-field (text :tip "Enter client Id"))
 (def client-secret-f (text :tip "Enter client secret"))
 (def login-f (text :tip "Enter your user email"))
@@ -10,7 +11,8 @@
 
 (def grid (grid-panel :border "Login information"
                       :columns 2
-                      :items ["Client id" client-id-field
+                      :items ["Server" server-field
+                              "Client id" client-id-field
                               "Client secret" client-secret-f
                               "Email" login-f
                               "Password" pwd-f]))
@@ -33,6 +35,10 @@
 (defn clear! [container]
   (apply remove! container (select container [:*])))
 
+(defn server
+  "The name of the server (as entered by the user)"
+  []
+  (text server-field))
 
 (defn credentials
   "A map of creadentials, as entered in the ui"

@@ -6,12 +6,13 @@
 (defn token-from-ui
   []
   (let [{:keys [login pwd client-id client-secret]} (gui/credentials)]
-    (api/get-access-token login pwd client-id client-secret)))
+    (api/get-access-token (gui/server) login pwd client-id client-secret)))
 
 (defn load-user-info []
-  (let [token (token-from-ui)
-        user-info (api/get-user-info token)
-        systems (api/get-systems token {})]
+  (let [server (gui/server)
+        token (token-from-ui)
+        user-info (api/get-user-info server token)
+        systems (api/get-systems server token {})]
     (gui/set-data! user-info systems)))
 
 (defn -main
