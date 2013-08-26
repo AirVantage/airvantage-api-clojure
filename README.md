@@ -43,6 +43,6 @@ and querying Airvantage APIs for the logged user details, and the number of syst
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Pierre-Henri Trivier
 
 Distributed under the Eclipse Public License, the same as Clojure.
