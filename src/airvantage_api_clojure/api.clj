@@ -1,4 +1,4 @@
-(ns clj-airvantage-demo.api
+(ns airvantage-api-clojure.api
   (:require [clj-http.client :as client])
   (:require [clojure.data.json :as json]))
 

@@ -1,4 +1,4 @@
-(ns clj-airvantage-demo.gui
+(ns airvantage-api-clojure.gui
   (:use [seesaw.core])
   (:use [seesaw.mig]))
 

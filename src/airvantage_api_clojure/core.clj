@@ -1,6 +1,6 @@
-(ns clj-airvantage-demo.core
-  (:require [clj-airvantage-demo.api :as api])
-  (:require [clj-airvantage-demo.gui :as gui])
+(ns airvantage-api-clojure.core
+  (:require [airvantage-api-clojure.api :as api])
+  (:require [airvantage-api-clojure.gui :as gui])
   (:gen-class :main :true))
 
 (defn token-from-ui
